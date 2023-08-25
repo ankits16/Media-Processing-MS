@@ -8,7 +8,7 @@
       "name": "MediaProcessingService",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/media_processing_services/manage.py",
+      "program": "${workspaceFolder}/manage.py",
       "args": ["runserver", "8003"],
       "django": true,
       "console": "integratedTerminal"
@@ -26,7 +26,7 @@
         "--queues=transcription"
       ], //using dedicated queue as few tasks were missing
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/media_processing_services"
+      // "cwd": "${workspaceFolder}"
     }
   ]
 }
