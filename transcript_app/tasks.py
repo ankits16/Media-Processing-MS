@@ -22,9 +22,9 @@ def get_unique_filename(extension):
     return f"{uuid.uuid4()}.{extension}"
 
 
-@shared_task(queue='transcription')
+@shared_task #(queue='transcription')
 def transcribe_task(task_id, process_id):
-    print(f'start processing task {task_id}')
+    print(f'****** start processing task {task_id}')
     task = TranscriptionTask.objects.get(pk=task_id)
     task.status = "PROCESSING"
     task.save()
@@ -34,16 +34,20 @@ def transcribe_task(task_id, process_id):
     
     try:
         # Download video
+        print(f"start downloading video {task.video_url}")
         response = requests.get(task.video_url, stream=True)
+        print(f"start downloading video {video_path}")
         with open(video_path, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
-
+        print(f"finished downloading video {video_path}")
         # Extract audio and transcribe
         extract_audio_from_video(video_path, audio_path)
         transcript = transcribe_audio(audio_path)
         task.result = transcript
         task.status = "DONE"
+        os.remove(video_path)
+        os.remove(audio_path)
         
         # Send results to callback URL
         requests.post(
@@ -55,13 +59,14 @@ def transcribe_task(task_id, process_id):
                   "process_id": process_id
                   }
               )
+        
     except Exception as e:
+        print(f"error obsreved {e}")
         task.status = "ERROR"
         task.result = str(e)
         
     task.save()
-    os.remove(video_path)
-    os.remove(audio_path)
+    
 
 def extract_audio_from_video(video_path, output_audio_path):
     command = [
