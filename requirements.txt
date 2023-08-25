@@ -1,9 +1,16 @@
 # A
 aiohttp
+
+#C
+celery
+
 # D
+Django==4.0
 django-background-tasks
+djangorestframework==3.13.1
 
 # F
 ffmpeg-python
+
 # G
 google-cloud-speech 
