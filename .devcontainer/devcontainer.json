@@ -1,0 +1,13 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+  "name": "Media Microservice Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "media_ms",
+  "workspaceFolder": "/app",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "forwardPorts": [8003],
+  "extensions": ["ms-python.python"]
+}

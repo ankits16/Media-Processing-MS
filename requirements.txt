@@ -13,4 +13,7 @@ djangorestframework==3.13.1
 ffmpeg-python
 
 # G
-google-cloud-speech 
+google-cloud-speech
+
+# P
+ptvsd
