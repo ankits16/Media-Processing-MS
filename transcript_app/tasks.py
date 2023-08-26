@@ -58,7 +58,7 @@ def transcribe_task(task_id, process_id):
         os.remove(audio_path)
         
         # Send results to callback URL
-        requests.post(
+        response = requests.post(
             task.callback_url,
               json={
                   "service_name":"tbd_transcript", 
@@ -67,6 +67,7 @@ def transcribe_task(task_id, process_id):
                   "process_id": process_id
                   }
               )
+        print(f'callback to main backend with response {response} - {task.callback_url}')
         
     except Exception as e:
         print(f"error obsreved {e}")
