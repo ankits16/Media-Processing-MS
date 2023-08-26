@@ -13,12 +13,12 @@ from google.cloud import speech_v1p1beta1 as speech
 from google.cloud.speech_v1p1beta1 import types
 
 from .models import TranscriptionTask
-import ptvsd
+# import ptvsd
 
-if settings.DEBUG:
-    print('celery attaching ptvsd')
-    ptvsd.enable_attach(address=('0.0.0.0', 5679))
-    ptvsd.wait_for_attach()
+# if settings.DEBUG:
+#     print('celery attaching ptvsd')
+#     ptvsd.enable_attach(address=('0.0.0.0', 5679))
+#     ptvsd.wait_for_attach()
 
 
 

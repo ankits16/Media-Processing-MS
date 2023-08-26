@@ -8,6 +8,7 @@ celery
 Django==4.0
 django-background-tasks
 djangorestframework==3.13.1
+debugpy
 
 # F
 ffmpeg-python
@@ -15,5 +16,5 @@ ffmpeg-python
 # G
 google-cloud-speech
 
-# P
-ptvsd
+# # P
+# ptvsd

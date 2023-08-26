@@ -56,6 +56,36 @@
       ],
       "port": 5679,
       "host": "localhost"
+    },
+    {
+      "name": "Debugpy: MS: Atach Django",
+      "type": "python",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "/app"
+        }
+      ]
+    },
+    {
+      "name": "Debupy: MS: Attach to Celery",
+      "type": "python",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5679
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "/app"
+        }
+      ]
     }
   ]
 }

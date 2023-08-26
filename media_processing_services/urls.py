@@ -16,13 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-import ptvsd
+# import ptvsd
 
-# Check if in DEBUG mode before starting ptvsd to ensure it doesn't run in production
-if settings.DEBUG:
-    print('attaching ptvsd')
-    ptvsd.enable_attach(address=('0.0.0.0', 5678))
-    ptvsd.wait_for_attach()
+# # Check if in DEBUG mode before starting ptvsd to ensure it doesn't run in production
+# if settings.DEBUG:
+#     print('attaching ptvsd')
+#     ptvsd.enable_attach(address=('0.0.0.0', 5678))
+#     ptvsd.wait_for_attach()
 
 urlpatterns = [
     path('admin/', admin.site.urls),

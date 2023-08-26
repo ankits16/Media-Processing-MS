@@ -3,7 +3,8 @@ version: '3.8'
 services:
   media_ms:
     build: .
-    command: python -m ptvsd --host 0.0.0.0 --port 5678 manage.py runserver 0.0.0.0:8003 --nothreading --noreload
+    # command: python -m ptvsd --host 0.0.0.0 --port 5678 manage.py runserver 0.0.0.0:8003 --nothreading --noreload
+    command: python -m debugpy --listen 0.0.0.0:5678 --wait-for-client manage.py runserver 0.0.0.0:8003
 
     volumes:
       - .:/app
@@ -16,7 +17,8 @@ services:
   celery:
     build: .
     # command: python -m ptvsd --host 0.0.0.0 --port 5679 -m celery -A media_processing_services worker --loglevel=info
-    command: python -m ptvsd --host 0.0.0.0 --port 5679 -m celery -A media_processing_services worker --loglevel=info -P solo
+    # command: python -m ptvsd --host 0.0.0.0 --port 5679 -m celery -A media_processing_services worker --loglevel=info -P solo
+    command: /bin/sh -c "python -m debugpy --wait-for-client --listen 0.0.0.0:5679 -m celery -A media_processing_services worker --loglevel=info"
     volumes:
       - .:/app
     ports:
